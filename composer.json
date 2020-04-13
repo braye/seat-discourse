@@ -1,5 +1,5 @@
 {
-    "name": "herpaderpaldent/seat-discourse",
+    "name": "braye/seat-discourse",
     "description": "Integrate Discourse SSO and API into SeAT.",
     "keywords": [
         "discourse",
