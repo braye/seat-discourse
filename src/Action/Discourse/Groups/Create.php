@@ -24,8 +24,8 @@ class Create
     {
         $client = new Client();
         try {
-            preg_replace('/\s+/', '_', $groupname);
-            
+            $groupname = preg_replace('/\s+/', '_', $groupname);
+
             $response = $client->request('POST', getenv('DISCOURSE_URL') . '/admin/groups', [
                 'headers' => [
                     'Api-Key' => getenv('DISCOURSE_API_KEY'),
