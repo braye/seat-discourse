@@ -24,7 +24,7 @@ class ListUsers
                 'headers' => [
                     'Api-Key' => getenv('DISCOURSE_API_KEY'),
                     'Api-Username' => getenv('DISCOURSE_API_USERNAME'),
-                ]
+                ],
                 'query' => [
                     'order' => 'topics_entered',
                     'show_emails' => 'true',
