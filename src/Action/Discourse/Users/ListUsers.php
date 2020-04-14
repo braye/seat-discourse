@@ -21,9 +21,11 @@ class ListUsers
         $client = new Client();
         try {
             $response = $client->request('GET', getenv('DISCOURSE_URL') . '/admin/users/list/active.json', [
+                'headers' => [
+                    'Api-Key' => getenv('DISCOURSE_API_KEY'),
+                    'Api-Username' => getenv('DISCOURSE_API_USERNAME'),
+                ]
                 'query' => [
-                    'api_key' => getenv('DISCOURSE_API_KEY'),
-                    'api_username' => getenv('DISCOURSE_API_USERNAME'),
                     'order' => 'topics_entered',
                     'show_emails' => 'true',
                 ],
