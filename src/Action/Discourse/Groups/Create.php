@@ -24,7 +24,8 @@ class Create
     {
         $client = new Client();
         try {
-            $groupname = preg_replace('/\s+/', '_', $groupname);
+            // coerce group names to fit discourse restrictions
+            $groupname = preg_replace('/(\s|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\{)+/', '_', $groupname);
 
             $response = $client->request('POST', getenv('DISCOURSE_URL') . '/admin/groups', [
                 'headers' => [
