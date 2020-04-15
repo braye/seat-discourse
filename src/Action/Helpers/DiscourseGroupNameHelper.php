@@ -16,7 +16,7 @@ class DiscourseGroupNameHelper
         // Discourse also doesn't allow the last symbol of a group name to be anything than a letter or number
         // lob anything else off
         // this has the potential to delete the whole string but if you make a group name consisting of all underscores you had it coming
-        while(preg_match('/a-zA-Z0-9/', substr($fmtName, strlen($fmtName) - 1) === 1)){
+        while(preg_match('/a-zA-Z0-9/', substr($fmtName, strlen($fmtName) - 1)) === 1){
             $fmtName = substr($fmtName, 0, strlen($fmtName) - 1);
         }
 
