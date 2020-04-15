@@ -10,6 +10,7 @@ namespace Herpaderpaldent\Seat\SeatDiscourse\Action\Discourse\Groups;
 
 use Exception;
 use Illuminate\Support\Collection;
+use Herpaderpaldent\Seat\SeatDiscourse\Helpers\DiscourseGroupNameHelper;
 
 class Detach
 {
@@ -23,7 +24,7 @@ class Detach
     public function execute(Collection $roles, Collection $groups)
     {
         try{
-            $rolenames_array = $roles->map(function ($role) {return studly_case($role->title); })->toArray();
+            $rolenames_array = $roles->map(function ($role) {return DiscourseGroupNameHelper::format($role->title); })->toArray();
 
             //Group minus Roles, what is left should be deleted
             $groups_deleted = collect();

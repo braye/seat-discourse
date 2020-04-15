@@ -10,6 +10,7 @@ namespace Herpaderpaldent\Seat\SeatDiscourse\Action\Discourse\Groups;
 
 use Exception;
 use Illuminate\Support\Collection;
+use Herpaderpaldent\Seat\SeatDiscourse\Helpers\DiscourseGroupNameHelper;
 
 class Attach
 {
@@ -25,11 +26,11 @@ class Attach
         try{
             $feedback = collect();
 
-            $groupnames_array = $groups->map(function ($group) {return $group->name; })->toArray();
+            $groupnames_array = $groups->map(function ($group) {return DiscourseGroupNameHelper::format($group->name); })->toArray();
 
             $roles->each(function ($role) use ($feedback, $groupnames_array) {
-                if(! in_array(studly_case($role->title), $groupnames_array)){
-                    $feedback->push($this->create->execute(studly_case($role->title)));
+                if(! in_array(DiscourseGroupNameHelper::format($role->title), $groupnames_array)){
+                    $feedback->push($this->create->execute(DiscourseGroupNameHelper::format($role->title)));
                 }
             });
 

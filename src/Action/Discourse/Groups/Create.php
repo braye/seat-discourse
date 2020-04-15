@@ -24,9 +24,6 @@ class Create
     {
         $client = new Client();
         try {
-            // coerce group names to fit discourse restrictions
-            $groupname = preg_replace('/(\s|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\{)+/', '', $groupname);
-
             $response = $client->request('POST', getenv('DISCOURSE_URL') . '/admin/groups', [
                 'headers' => [
                     'Api-Key' => getenv('DISCOURSE_API_KEY'),

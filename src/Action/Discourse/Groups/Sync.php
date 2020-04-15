@@ -9,6 +9,7 @@
 namespace Herpaderpaldent\Seat\SeatDiscourse\Action\Discourse\Groups;
 
 use Seat\Web\Models\Acl\Role;
+use Herpaderpaldent\Seat\SeatDiscourse\Helpers\DiscourseGroupNameHelper;
 
 class Sync
 {
@@ -30,12 +31,12 @@ class Sync
 
         $feedback = collect();
 
-        if($roles->map(function ($role) {return $role->title; })->diff($groups->map(function ($group) {return $group->name; }))->isNotEmpty())
+        if($roles->map(function ($role) {return DiscourseGroupNameHelper::format($role->title); })->diff($groups->map(function ($group) {return DiscourseGroupNameHelper::format($group->name); }))->isNotEmpty())
         {
             $feedback->push($this->attach->execute($roles, $groups));
         }
 
-        if($groups->map(function ($group) {return $group->name; })->diff($roles->map(function ($role) {return studly_case($role->title); }))->isNotEmpty()){
+        if($groups->map(function ($group) {return DiscourseGroupNameHelper::format($group->name); })->diff($roles->map(function ($role) {return DiscourseGroupNameHelper::format($role->title); }))->isNotEmpty()){
             $feedback->push($this->detach->execute($roles, $groups));
         }
 
